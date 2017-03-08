@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project_1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" MinHeight="300" MinWidth="500">
+        Title="Lab_1" Height="350" Width="525" MinHeight="300" MinWidth="500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
