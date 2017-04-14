@@ -5,9 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project_1"
         mc:Ignorable="d"
-        Title="Lab_1" MinWidth="600" MinHeight="400">
+        Title="Lab_1" MinWidth="600" MinHeight="400" Height="352" Width="447">
+    <Window.DataContext>
+        <local:MainWindowViewModel></local:MainWindowViewModel>
+    </Window.DataContext>
 
-
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self},
+                    Path=(Validation.Errors)[0].ErrorContent}">
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
 
 
     <Grid>
@@ -41,15 +54,51 @@
             <Label Grid.Row="2" Grid.Column="0" Margin="2 8" VerticalAlignment="Center">Пароль</Label>
             <Label Grid.Row="3" Grid.Column="0" Margin="2 8" VerticalAlignment="Center">Подтверждение пароля</Label>
             <Label Grid.Row="4" Grid.Column="0" Margin="2 8"  VerticalAlignment="Center">E-mail</Label>
-            <CheckBox Grid.Row="5" Grid.Column="0" Margin="2 8" VerticalAlignment="Center">
-                <CheckBox.Content>Запомнить меня</CheckBox.Content>
-            </CheckBox>
-            <TextBox Grid.Row="1" Grid.Column="1"  Margin="8" Height="25" VerticalAlignment="Center"></TextBox>
-            <TextBox Grid.Row="2" Grid.Column="1" Margin="8" Height="25" VerticalAlignment="Center"></TextBox>
-            <TextBox Grid.Row="3" Grid.Column="1" Margin="8" Height="25" VerticalAlignment="Center"></TextBox>
-            <TextBox Grid.Row="4" Grid.Column="1" Margin="8" Height="25" VerticalAlignment="Center"></TextBox>
-            <Button Grid.Row="6" Grid.Column="0" Grid.RowSpan="8" Height="30" Margin="5" VerticalAlignment="Center">ОК</Button>
-            <Button Grid.Row="6" Grid.Column="1" Grid.RowSpan="8" Height="30" Margin="5" VerticalAlignment="Center">Отмена</Button>
+            
+            <TextBox x:Name="LoginBox" Grid.Row="1" Grid.Column="1"  Margin="8" Height="25" VerticalAlignment="Center">
+                <TextBox.Text>
+                    <Binding Path="Login" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:LoginValidationRule></local:LoginValidationRule>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            
+            <TextBox x:Name="PasswordBox" Grid.Row="2" Grid.Column="1" Margin="8" Height="25" VerticalAlignment="Center">
+                <TextBox.Text>
+                    <Binding Path="Password" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:PasswordValidationRule></local:PasswordValidationRule>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            
+            <TextBox x:Name="ConfirmedPasswordBox" Grid.Row="3" Grid.Column="1" Margin="8" Height="25" VerticalAlignment="Center">
+                <TextBox.Text>
+                    <Binding Path="ConfirmedPassword" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <!--todo: реализовать валидацию на основе равенства с полем Password-->
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+
+            <TextBox x:Name="EmailBox" Grid.Row="4" Grid.Column="1" Margin="8" Height="25" VerticalAlignment="Center">
+                <TextBox.Text>
+                    <Binding Path="Email" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <local:EmailValidationRule></local:EmailValidationRule>
+                        </Binding.ValidationRules>
+                    </Binding> 
+                </TextBox.Text>
+            </TextBox>
+            <CheckBox Grid.Row="5" Grid.Column="0" Margin="2 8" VerticalAlignment="Center"
+                      IsChecked="{Binding RememberMe}">Запомнить меня</CheckBox>
+            
+            <Button x:Name="OkButton" Grid.Row="6" Grid.Column="0" Grid.RowSpan="2" Height="30" Margin="5" VerticalAlignment="Center" Click="OkButton_Click">ОК</Button>
+            <Button x:Name="CancelButton" Grid.Row="6" Grid.Column="1" Grid.RowSpan="2" Height="30" Margin="5" VerticalAlignment="Center" Click="CancelButton_Click">Отмена</Button>
         </Grid>
 
 
@@ -70,7 +119,8 @@
             </Label>
 
             <GridSplitter Grid.Row="1" Grid.Column="0" Grid.RowSpan="4" Width="3" IsEnabled="False" HorizontalAlignment="Left" />
-            <Image Grid.Row="1" Grid.Column="0" Margin="5" Source="/_Content/facebook_logo.png"/>
+
+            <Image Grid.Row="1" Grid.Column="0" Margin="5" Source="_Content/facebook_logo.png"/>
             <Image Grid.Row="1" Grid.Column="1" Margin="5" Source="/_Content/twitter_logo.png"/>
             <Image Grid.Row="2" Grid.Column="0" Margin="5" Source="/_Content/vkontakte_logo.png"/>
             <Image Grid.Row="2" Grid.Column="1" Margin="5" Source="/_Content/ok_logo.png"/>

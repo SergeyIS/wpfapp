@@ -24,5 +24,19 @@ namespace project_1
         {
             InitializeComponent();
         }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(MessageBox.Show("Вы уверены, что хотите выйти?", "Подтверждение выхода", MessageBoxButton.YesNo, 
+                MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void OkButton_Click(object sender, RoutedEventArgs e)
+        {
+           //todo: реализация проверки модели
+        }
     }
 }
