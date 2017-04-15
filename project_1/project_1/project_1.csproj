@@ -55,9 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="EmailValidationRule.cs" />
-    <Compile Include="LoginValidationRule.cs" />
-    <Compile Include="PasswordValidationRule.cs" />
+    <Compile Include="Infrastructure\MainWindow\EmailValidationRule.cs" />
+    <Compile Include="Infrastructure\MainWindow\LoginValidationRule.cs" />
+    <Compile Include="Infrastructure\MainWindow\PasswordValidationRule.cs" />
     <Compile Include="UserModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
