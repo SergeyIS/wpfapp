@@ -1,0 +1,40 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:project_1.Infrastructure.MainWindow">
+
+    <Style TargetType="TextBox">
+        <Setter Property="Opacity" Value="0.9"></Setter>
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Mode=Self},
+                    Path=(Validation.Errors)[0].ErrorContent}">
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    
+    
+    <Style TargetType="Button">
+        <Setter Property="Background" Value="Azure"></Setter>
+    </Style>
+
+    <Style x:Key="BackgroundStyle" TargetType="Grid">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/_Content/grass_background.jpg"></ImageBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter Property="FontFamily" Value="Segoe UI"></Setter>
+        <Setter Property="Foreground" Value="Black"></Setter>
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Opacity="0.15" Color="White"></SolidColorBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+    </Style>
+</ResourceDictionary>

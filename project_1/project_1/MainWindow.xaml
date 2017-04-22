@@ -9,21 +9,15 @@
     <Window.DataContext>
         <local:MainWindowViewModel></local:MainWindowViewModel>
     </Window.DataContext>
-
+    
+    
+    
     <Window.Resources>
-        <Style TargetType="TextBox">
-            <Style.Triggers>
-                <Trigger Property="Validation.HasError" Value="True">
-                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Mode=Self},
-                    Path=(Validation.Errors)[0].ErrorContent}">
-                    </Setter>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+        <ResourceDictionary Source="/Infrastructure/MainWindow/MainWindowResources.xaml"></ResourceDictionary>
     </Window.Resources>
 
 
-    <Grid>
+    <Grid Style="{StaticResource BackgroundStyle}">
         <Grid.RowDefinitions>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -31,7 +25,7 @@
             <ColumnDefinition Width="0.5*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="0">
+        <Grid Grid.Row="0" Grid.Column="0"> 
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -80,7 +74,7 @@
             <TextBox x:Name="ConfirmedPasswordBox" Grid.Row="3" Grid.Column="1" Margin="8" Height="25" VerticalAlignment="Center">
             </TextBox>
 
-            <TextBox x:Name="EmailBox" Grid.Row="4" Grid.Column="1" Margin="8" Height="25" VerticalAlignment="Center">
+            <TextBox x:Name="EmailBox" Grid.Row="4" Grid.Column="1" Margin="8" Height="25" VerticalAlignment="Center" Opacity="0.8">
                 <TextBox.Text>
                     <Binding Path="Email" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
@@ -89,8 +83,10 @@
                     </Binding> 
                 </TextBox.Text>
             </TextBox>
-            <CheckBox Grid.Row="5" Grid.Column="0" Margin="2 8" VerticalAlignment="Center"
-                      IsChecked="{Binding RememberMe}">Запомнить меня</CheckBox>
+            <CheckBox x:Name="RememberMe" Grid.Row="5" Grid.Column="0" Margin="2 8" VerticalAlignment="Center"
+                      IsChecked="{Binding RememberMe}">
+                <Label>Запомнить меня</Label>
+            </CheckBox>
             
             <Button x:Name="OkButton" Grid.Row="6" Grid.Column="0" Grid.RowSpan="2" Height="30" Margin="5" VerticalAlignment="Center" Click="OkButton_Click">ОК</Button>
             <Button x:Name="CancelButton" Grid.Row="6" Grid.Column="1" Grid.RowSpan="2" Height="30" Margin="5" VerticalAlignment="Center" Click="CancelButton_Click">Отмена</Button>
