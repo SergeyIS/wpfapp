@@ -8,45 +8,25 @@ using System.Text;
 namespace project_1
 {
     //Пока не используется
-    public class UserModel : INotifyPropertyChanged
+    public class UserModel
     {
-        private string login;
-        private string password;
-        private string email;
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
 
-        public string Login
+        public bool Validate()
         {
-            get { return login; }
-            set
-            {
-                login = value;
-                OnPropertyChanged("Login");
-            }
-        }
-        public string Password
-        {
-            get { return password; }
-            set
-            {
-                password = value;
-                OnPropertyChanged("Password");
-            }
-        }
-        public string Email
-        {
-            get { return email; }
-            set
-            {
-                email = value;
-                OnPropertyChanged("Email");
-            }
-        }
+            var validationResult = true;
+            
+            var emailValidation = new EmailValidationRule();
+            var loginValidation = new LoginValidationRule();
+            var passwordValidation = new PasswordValidationRule();
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string prop = "")
-        {
-            if (this.PropertyChanged != null)
-            PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            validationResult &= emailValidation.Validate(Email, null).IsValid;
+            validationResult &= loginValidation.Validate(Login, null).IsValid;
+            validationResult &= passwordValidation.Validate(Password, null).IsValid;
+
+            return validationResult;
         }
     }
 }

@@ -67,5 +67,14 @@ namespace project_1
             if (this.PropertyChanged != null)
             PropertyChanged(this, new PropertyChangedEventArgs(prop));    
         }
+
+        public MainWindowViewModel()
+        {
+            login = "Введите логин";
+            password = "Введите пароль";
+            confirmedPassword = "Повторите пароль";
+            email = "Укажите ваш Email";
+            rememberMe = true;
+        }
     }
 }

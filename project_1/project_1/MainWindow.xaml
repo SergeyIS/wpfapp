@@ -14,7 +14,7 @@
         <Style TargetType="TextBox">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">
-                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self},
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Mode=Self},
                     Path=(Validation.Errors)[0].ErrorContent}">
                     </Setter>
                 </Trigger>
@@ -64,7 +64,9 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            
+
+
+
             <TextBox x:Name="PasswordBox" Grid.Row="2" Grid.Column="1" Margin="8" Height="25" VerticalAlignment="Center">
                 <TextBox.Text>
                     <Binding Path="Password" UpdateSourceTrigger="PropertyChanged">
@@ -74,15 +76,8 @@
                     </Binding>
                 </TextBox.Text>
             </TextBox>
-            
+
             <TextBox x:Name="ConfirmedPasswordBox" Grid.Row="3" Grid.Column="1" Margin="8" Height="25" VerticalAlignment="Center">
-                <TextBox.Text>
-                    <Binding Path="ConfirmedPassword" UpdateSourceTrigger="PropertyChanged">
-                        <Binding.ValidationRules>
-                            <!--todo: реализовать валидацию на основе равенства с полем Password-->
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
             </TextBox>
 
             <TextBox x:Name="EmailBox" Grid.Row="4" Grid.Column="1" Margin="8" Height="25" VerticalAlignment="Center">

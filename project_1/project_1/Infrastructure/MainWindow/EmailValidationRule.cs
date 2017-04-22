@@ -18,7 +18,7 @@ namespace project_1
                 return new ValidationResult(false, null);
 
             Regex emailReg = new Regex(@"^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$");
-            bool result = emailReg.IsMatch(email);
+            bool result = emailReg.IsMatch(email.ToLower());
             if (result)
                 return new ValidationResult(true, null);
 
