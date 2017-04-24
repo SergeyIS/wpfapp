@@ -9,9 +9,9 @@
     <Window.DataContext>
         <local:MainWindowViewModel></local:MainWindowViewModel>
     </Window.DataContext>
-    
-    
-    
+
+
+
     <Window.Resources>
         <ResourceDictionary Source="/Infrastructure/MainWindow/MainWindowResources.xaml"></ResourceDictionary>
     </Window.Resources>
@@ -21,11 +21,12 @@
         <Grid.RowDefinitions>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            <ColumnDefinition Width="256*"></ColumnDefinition>
+            <ColumnDefinition Width="139*"/>
+            <ColumnDefinition Width="197*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0" Grid.Column="0"> 
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -48,7 +49,7 @@
             <Label Grid.Row="2" Grid.Column="0" Margin="2 8" VerticalAlignment="Center">Пароль</Label>
             <Label Grid.Row="3" Grid.Column="0" Margin="2 8" VerticalAlignment="Center">Подтверждение пароля</Label>
             <Label Grid.Row="4" Grid.Column="0" Margin="2 8"  VerticalAlignment="Center">E-mail</Label>
-            
+
             <TextBox x:Name="LoginBox" Grid.Row="1" Grid.Column="1"  Margin="8" Height="25" VerticalAlignment="Center">
                 <TextBox.Text>
                     <Binding Path="Login" UpdateSourceTrigger="PropertyChanged">
@@ -74,26 +75,27 @@
             <TextBox x:Name="ConfirmedPasswordBox" Grid.Row="3" Grid.Column="1" Margin="8" Height="25" VerticalAlignment="Center">
             </TextBox>
 
-            <TextBox x:Name="EmailBox" Grid.Row="4" Grid.Column="1" Margin="8" Height="25" VerticalAlignment="Center" Opacity="0.8">
+            <TextBox x:Name="EmailBox" Grid.Row="4" Grid.Column="1" Margin="8" Height="25" VerticalAlignment="Center">
                 <TextBox.Text>
                     <Binding Path="Email" UpdateSourceTrigger="PropertyChanged">
                         <Binding.ValidationRules>
                             <local:EmailValidationRule></local:EmailValidationRule>
                         </Binding.ValidationRules>
-                    </Binding> 
+                    </Binding>
                 </TextBox.Text>
             </TextBox>
             <CheckBox x:Name="RememberMe" Grid.Row="5" Grid.Column="0" Margin="2 8" VerticalAlignment="Center"
                       IsChecked="{Binding RememberMe}">
                 <Label>Запомнить меня</Label>
             </CheckBox>
-            
-            <Button x:Name="OkButton" Grid.Row="6" Grid.Column="0" Grid.RowSpan="2" Height="30" Margin="5" VerticalAlignment="Center" Click="OkButton_Click">ОК</Button>
+
+            <Button x:Name="OkButton" Grid.Row="6" Grid.Column="0" Grid.RowSpan="2" 
+                    Height="30" Margin="5" VerticalAlignment="Center" Click="OkButton_Click">ОК</Button>
             <Button x:Name="CancelButton" Grid.Row="6" Grid.Column="1" Grid.RowSpan="2" Height="30" Margin="5" VerticalAlignment="Center" Click="CancelButton_Click">Отмена</Button>
         </Grid>
 
 
-        <Grid Grid.Row="0" Grid.Column="1" Margin="0 0 0 100">
+        <Grid Grid.Row="0" Grid.Column="2" Margin="0 0 0 100">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -111,12 +113,12 @@
 
             <GridSplitter Grid.Row="1" Grid.Column="0" Grid.RowSpan="4" Width="3" IsEnabled="False" HorizontalAlignment="Left" />
 
-            <Image Grid.Row="1" Grid.Column="0" Margin="5" Source="_Content/facebook_logo.png"/>
-            <Image Grid.Row="1" Grid.Column="1" Margin="5" Source="/_Content/twitter_logo.png"/>
-            <Image Grid.Row="2" Grid.Column="0" Margin="5" Source="/_Content/vkontakte_logo.png"/>
-            <Image Grid.Row="2" Grid.Column="1" Margin="5" Source="/_Content/ok_logo.png"/>
-            <Image Grid.Row="3" Grid.Column="0" Margin="5" Source="/_Content/gplus_logo.png"/>
-            <Image Grid.Row="3" Grid.Column="1" Margin="5" Source="/_Content/linkedin_logo.png"/>
+            <Image Grid.Row="1" Grid.Column="0" Margin="5" Source="_Content/facebook_logo.png" Style="{StaticResource ImageButton}"/>
+            <Image Grid.Row="1" Grid.Column="1" Margin="5" Source="/_Content/twitter_logo.png" Style="{StaticResource ImageButton}"/>
+            <Image Grid.Row="2" Grid.Column="0" Margin="5" Source="/_Content/vkontakte_logo.png" Style="{StaticResource ImageButton}"/>
+            <Image Grid.Row="2" Grid.Column="1" Margin="5" Source="/_Content/ok_logo.png" Style="{StaticResource ImageButton}"/>
+            <Image Grid.Row="3" Grid.Column="0" Margin="5" Source="/_Content/gplus_logo.png" Style="{StaticResource ImageButton}"/>
+            <Image Grid.Row="3" Grid.Column="1" Margin="5" Source="/_Content/linkedin_logo.png" Style="{StaticResource ImageButton}"/>
         </Grid>
     </Grid>
 </Window>
