@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using project_1.Data.DataModels;
 
 namespace project_1
 {
@@ -42,26 +43,40 @@ namespace project_1
                 var model = (MainWindowViewModel)this.DataContext;
                 
                 
-                var user = new UserModel();
+                var user = new User();
                 user.Login = model.Login;
                 user.Password = model.Password;
                 user.Email = model.Email;
 
-                if(!user.Validate())
+                if (!user.Validate())
                 {
-                    MessageBox.Show("Вы незаполнили форму", "Ошибки валидации", MessageBoxButton.OK, 
+                    MessageBox.Show("Вы незаполнили форму", "Ошибки валидации", MessageBoxButton.OK,
                         MessageBoxImage.Exclamation, MessageBoxResult.None);
                     return;
                 }
 
-                Task.Run(() => {
+                var isExistResult = false;
+                using (var db = new DataBaseModel())
+                {
+                    isExistResult = db.Users.Any(u=> u.Email.Equals(user.Email, StringComparison.OrdinalIgnoreCase) &&
+                    u.Login.Equals(user.Login) && u.Password.Equals(user.Password));
+                }
 
-                    //todo: серриализация модели и отправка json на сервер
-                    
-                });
+                if (!isExistResult)
+                {
+                    MessageBox.Show("Такого пользователя не существует", "Ошибки валидации", MessageBoxButton.OK,
+                        MessageBoxImage.Information, MessageBoxResult.None);
+                }
+                else
+                {
+                    MessageBox.Show("Вход выполнен", "Вход выполнен", MessageBoxButton.OK,
+                        MessageBoxImage.Information, MessageBoxResult.None);
 
-                MessageBox.Show($"Привет, {model.Login}!", "Приветствие",
-                    MessageBoxButton.OK, MessageBoxImage.None, MessageBoxResult.None);
+                    MessageBox.Show($"Привет, {model.Login}!", "Приветствие",MessageBoxButton.OK, 
+                        MessageBoxImage.None, MessageBoxResult.None);
+                }
+
+                
             }
             catch(Exception exp)
             {

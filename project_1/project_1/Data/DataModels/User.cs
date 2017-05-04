@@ -1,23 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-
-namespace project_1
+namespace project_1.Data.DataModels
 {
-    //Пока не используется
-    public class UserModel
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
+    public partial class User
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int UserId { get; set; }
+
+        [Required]
+        [StringLength(50)]
         public string Login { get; set; }
+
+        [Required]
+        [StringLength(50)]
         public string Password { get; set; }
+
+        [Required]
+        [StringLength(50)]
         public string Email { get; set; }
 
         public bool Validate()
         {
             var validationResult = true;
-            
+
             var emailValidation = new EmailValidationRule();
             var loginValidation = new LoginValidationRule();
             var passwordValidation = new PasswordValidationRule();
@@ -28,5 +37,6 @@ namespace project_1
 
             return validationResult;
         }
+
     }
 }
