@@ -23,7 +23,8 @@ namespace project_1
     {
         public MainWindow()
         {
-            InitializeComponent();    
+            InitializeComponent();
+           
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
